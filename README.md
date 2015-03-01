@@ -14,6 +14,6 @@ Open up a terminal and type the following commands.
 ```bash
 virtualenv babyancestry
 cd babyancestry
-mkdir baby_ancestry && cd baby_ancestry
-git clone http
+mkdir project && cd project
+git clone https://github.com/amlbar/babyancestry.git
 ```
