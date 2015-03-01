@@ -1,0 +1,190 @@
+body {
+	background-color: #fff;
+	padding: 0;
+	margin: 0 auto;
+	color: #000;
+	font-family: Helvetica;
+	max-width: 1366px;	
+}
+a {
+	color: #000;
+}
+#headersection, #mainsection, #footersection {
+	padding-left: 15px; padding-right: 15px;
+}
+#headersection > .row, #mainsection > .row, #footersection > .row {
+	margin-left: 0px; margin-right: 0px;
+}
+#headersection {
+	background: url("header.png") no-repeat center;
+	min-height: 264px;
+	position: relative;
+}
+#leftheader {
+	float: left;
+}
+#greetings {
+	font-size: 20px;
+}
+#greetings span {
+	font-weight: bold;
+	color: #3a3939;
+}
+#rightheader {
+	float: right;
+}
+
+#mainsection {
+	min-height: 100px;
+}
+#footersection {
+	background: url("footer.png") no-repeat center;
+	min-height: 154px;
+	position: relative;
+}
+#ribbon, #elephant {
+	min-width: 10px;
+	min-height: 10px;
+	margin: 0 auto;
+}
+#ribbon {
+	background: url("ribbon.png") no-repeat center;
+	width: 445px;
+	height: 115px;
+	margin-top: 96px;
+	background-size: 414px 102px;
+}
+#elephant {
+	background: url("elephant.png") no-repeat center;
+	width: 118px;
+	height: 83px;
+	margin-top: 33px;
+}
+#rightheader nav li {
+	list-style: none;
+	display: inline-block;
+}
+#rightheader nav li a {
+	padding: 5px;
+	border: 2px solid #808080;
+	border-radius: 10px;
+	background-color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#leftheader, #rightheader {
+	margin-top: -3px;
+}
+#rightheader nav li.active a {
+	background-color: #FFFFA5;
+}
+#rightheader nav li a:hover {
+	background-color: #FFFFA5;
+	color: #000;
+}
+.box {
+	/* background-color: orange; */
+	border-radius: 6px;
+	border: 1px solid #aaa;
+	margin: 10px 0px;
+	position: relative;
+	overflow: hidden;
+}
+
+.box img.avatar {
+	width: 100%;
+}
+.box .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0px;
+	right: 0;
+	text-align: center;
+	line-height: 20px;
+	font-size: 20px;
+	vertical-align: middle;
+	padding-top: 35%;
+	background-color: #fff;
+}
+.box .overlay:hover {
+	background-color: rgba(255,255,255,0.5);
+}
+.modal-backdrop.fade {
+	opacity: 0.2;
+}
+.modal-content {
+	box-shadow: none;
+}
+.modal-content .head .avatar {
+	width: 37%;
+	float: left;
+}
+.modal-content .head .person-info {
+	width: 63%;
+	float: left;
+}
+.modal-content .head img {
+	width: 100%;
+	max-width: 120px;
+}
+.modal p.name {
+	font-size: 20px;
+	margin: 0;
+}
+.modal-content .person-info {
+	text-align: center;
+	padding-top: 28px;
+}
+.modal-content .head, .modal-content .readmore, .modal-content .bio {
+	margin-bottom: 15px;
+}
+.modal-dialog {
+	margin-top: 15%;
+}
+#login {
+	margin: 5px auto;
+	width: 400px;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+	padding: 15px;
+}
+#loginbutton {
+	text-align: center;
+	padding: 20px;
+}
+#go-login {
+	text-decoration: none;
+	padding: 7px 10px;
+	border: 2px solid #aaa;
+	border-radius: 10px;
+	background-color: #97dbea;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 40px;
+}
+#go-login:hover {
+	border-color: #555;
+}
+@media (min-width: 768px) {
+	.modal-dialog {
+		max-width: 400px;
+	}
+}
+@media screen and (min-width:1100px) {
+	#leftheader, #rightheader {
+		margin-top: -20px;
+	}
+	#ribbon {
+		margin-top: 105px;
+		background-size: 100% 100%;
+	}
+}
+@media (min-width:1366px) {
+	.container {
+		width:1300px;
+	}
+}
+

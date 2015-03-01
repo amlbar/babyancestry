@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Family History Baby Name Recommender {% endblock title %}</title>
+    
+    {% block stylesheets %}
+        <!-- For all browsers -->
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock stylesheets %}
+</head>
+<body>
+    <section id="headersection">
+        <div class="row">
+            <div id="ribbon"></div>
+            {% if request.user.is_authenticated %}
+            <div id="leftheader"></div>
+            <div id="rightheader">
+                <nav>
+                    <ul>
+                        <li><a href="">Boy Names</a></li>
+                        <li><a href="">Girl Names</a></li>
+                        <li><a href="">Last Names</a></li>
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    
+    <section id="mainsection">
+        <div class="row">
+            {% block content %}{% endblock content %}
+        </div>
+    </section>
+    
+    <section id="footersection">
+        <div class="row">
+            <div id="elephant"></div>
+        </div>
+    </section>
+    
+    {% block js %}
+        <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% endblock js %}
+</body>
+</html>
