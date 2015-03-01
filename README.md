@@ -40,7 +40,7 @@ Close the editor and then continue the following commands but not including comm
 
 ```bash
 python manage.py syncdb
-# COMMENT: Then a superuser
+# COMMENT: Then create a superuser
 python manage.py runserver
 # COMMENT: Click the link of your development server that shows in the terminal or Copy and Paste it to your browser.
 # COMMENT: Done
