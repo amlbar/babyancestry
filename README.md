@@ -1,6 +1,6 @@
 # Getting started:
 
-This steps for setting up the project on your local machine assumes you already have the requirements installed and that you are using Ubuntu as your Operating System.
+These steps for setting up the project on your local machine assumes you already have the requirements installed and that you are using Ubuntu as your Operating System.
 
 # Requirements:
 
@@ -45,3 +45,5 @@ python manage.py runserver
 # COMMENT: Click the link of your development server that shows in the terminal or Copy and Paste it to your browser.
 # COMMENT: Done
 ```
+
+If all the steps are achieved, you shoul now see the output in your browser.
