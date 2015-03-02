@@ -132,9 +132,11 @@ INSTALLED_APPS = [
 ]
 
 # familysearch API settings
-APP_KEY = ""
-USER_AGENT = ""
+# this is different dev account, it's temporary for now
+APP_KEY = "a0T3000000BZ6ojEAD" 
+USER_AGENT = "tuf000205792"
 FS_ADDRESS = "https://sandbox.familysearch.org"
+FS_REDIRECT_URI = "http://fiddle.jshell.net"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

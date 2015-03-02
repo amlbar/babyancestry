@@ -32,14 +32,15 @@ def login_user(request):
         fs = FamilySearch(settings.USER_AGENT, 
                           settings.APP_KEY, 
                           base=settings.FS_ADDRESS)
-        fslogin = fs.root_collection['collections'][0]['links']\
+        # fslogin = fs.root_collection['collections'][0]['links']\
+        fslogin = fs.root_collection['response']['collections'][0]['links']\
                 ['http://oauth.net/core/2.0/endpoint/authorize']['href']
-        #fslogin = fs._add_query_params(fslogin, {
-        #    'response_type': 'code',
-        #    'client_id': fs.key,
-        #    'redirect_uri': redirect
-        #})
-        #return HttpResponseRedirect(fslogin)
+        fslogin = fs._add_query_params(fslogin, {
+           'response_type': 'code',
+           'client_id': fs.key,
+           'redirect_uri': settings.FS_REDIRECT_URI
+        })
+        return HttpResponseRedirect(fslogin)
         
     return render(request, 'accounts/login.html', {
         #'data': request.META.get('HTTP_HOST')
