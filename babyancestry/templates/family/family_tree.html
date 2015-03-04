@@ -3,6 +3,7 @@
 {% load url from future %}
 
 {% block content %}
+    {{ data }}
     {% for obj in "1234567890" %}
 	<div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
 		<div class="box" data-toggle="modal" data-target="#modal-info">

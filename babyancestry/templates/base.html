@@ -20,8 +20,8 @@
     <section id="headersection">
         <div class="row">
             <div id="ribbon"></div>
-            {% if request.user.is_authenticated %}
-            <div id="leftheader"></div>
+            {% if request.session.logged_in %}
+            <div id="leftheader">Welcome <a href="{% url 'accounts:logout' %}">Logout</a></div>
             <div id="rightheader">
                 <nav>
                     <ul>
