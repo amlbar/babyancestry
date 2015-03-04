@@ -6,7 +6,7 @@
     {% for obj in "1234567890" %}
 	<div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
 		<div class="box" data-toggle="modal" data-target="#modal-info">
-			<img src="avatar.png" class="avatar" />
+			<img src="{% static 'images/avatar.png' %}" class="avatar" />
 			<div class="overlay"><p>Nancy Sue Stratford</p></div>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 	<div class="modal-content">
 	<div class="modal-body">
 		<div class="head">
-			<div class="avatar"><img src="avatar.png" /></div>
+			<div class="avatar"><img src="{% static 'images/avatar.png' %}" /></div>
 			<div class="person-info">
 				<p class="name">Nancy Sue Stratford</p>
 				<p class="born">June 26, 1929-</p>

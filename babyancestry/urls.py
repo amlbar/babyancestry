@@ -12,7 +12,7 @@ urlpatterns = patterns(
     
     # babyancestry
     url(r'^', include('accounts.urls', namespace="accounts")),
-    #url(r'^family/', include('genealogy.urls', namespace='genealogy')),
+    url(r'^family-tree/', include('family.urls', namespace='family')),
 )
 
 # For serving static files in debug mode

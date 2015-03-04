@@ -1,9 +1,11 @@
 import os
 import sys
+import pprint
 
-PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '.')
+PROJECT_ROOT = os.path.join(os.path.dirname(__file__))
 SITE_ROOT = PROJECT_ROOT
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
+print 'type=', type(os.path)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -68,6 +70,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     os.path.join(SITE_ROOT, 'staticfiles'),
 ]
+print 'staticfiles=', os.path.join(SITE_ROOT, 'staticfiles')
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -113,6 +116,7 @@ WSGI_APPLICATION = "babyancestry.wsgi.application"
 TEMPLATE_DIRS = [
     os.path.join(SITE_ROOT, 'templates'),
 ]
+print 'templates=', os.path.join(SITE_ROOT, 'templates')
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -128,15 +132,21 @@ INSTALLED_APPS = [
 
     # babyancestry apps
     "accounts",
-    "genealogy",
+    "family",
 ]
 
+LOGIN_URL = "/"
+
 # familysearch API settings
+# APP_KEY = "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK"
+# USER_AGENT = "20e0"
+# FS_ADDRESS = "https://sandbox.familysearch.org"
+# FS_REDIRECT_URI = "https://www.google.com.ph"
+
 # this is different dev account, it's temporary for now
-APP_KEY = "a0T3000000BZ6ojEAD" 
+APP_KEY = "a0T3000000BZ6ojEAD"
 USER_AGENT = "tuf000205792"
 FS_ADDRESS = "https://sandbox.familysearch.org"
-FS_REDIRECT_URI = "http://fiddle.jshell.net"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

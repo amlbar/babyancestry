@@ -226,14 +226,14 @@ a {
 
 #go-login {
 	text-decoration: none;
-	padding: 7px 10px;
+	padding: 2px 11px;
 	border: 2px solid #aaa;
 	border-radius: 10px;
 	background-color: #97dbea;
 	color: #fff;
 	font-size: 20px;
 	font-weight: bold;
-	line-height: 40px;
+	line-height: 36px;
 }
 
 #go-login:hover {
