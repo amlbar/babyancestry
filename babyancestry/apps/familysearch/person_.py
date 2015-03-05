@@ -13,7 +13,7 @@ class Person:
         return self.person_base[::-1]
 
     def person(self, pid):
-        """https://familysearch.org/developers/docs/api/tree/Person_resource"""
+        """https://familysearch.org/developers/docs/api/tree/Person_resource"""    
         return self.person_base + pid
 
     def person_parents(self, pid):

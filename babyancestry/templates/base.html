@@ -21,7 +21,10 @@
         <div class="row">
             <div id="ribbon"></div>
             {% if request.session.logged_in %}
-            <div id="leftheader">Welcome <a href="{% url 'accounts:logout' %}">Logout</a></div>
+            <div id="leftheader">
+                <div id="greetings"><span>WELCOME</span> {{ given_name|upper }}</div>
+                <a href="{% url 'accounts:logout' %}">Logout</a>
+            </div>
             <div id="rightheader">
                 <nav>
                     <ul>

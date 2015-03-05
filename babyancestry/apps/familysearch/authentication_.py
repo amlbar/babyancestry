@@ -114,6 +114,7 @@ class Authentication(object):
         Log the current session out of FamilySearch.
         """
         self.logged_in = False
+        print self.session_id
         url = self.token + "?access_token=" + self.session_id
         self._request(url, method="DELETE")
         self.session_id = None

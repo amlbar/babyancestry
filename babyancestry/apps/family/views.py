@@ -3,28 +3,32 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from urllib import urlencode
+from urllib2 import HTTPError
 from urlparse import parse_qs
 
 from accounts.views import fsClient
+import pprint
 
 def family_tree(request):
     # If not authenticated, then go back to login page
     if not request.session.get('logged_in'):
         return HttpResponseRedirect(reverse('accounts:login'))
-        
-    fs = fsClient()
-        
-    #url = fs.root_collection['response']['collections'][0]['links']\
-    #    ['http://oauth.net/core/2.0/endpoint/token']['href']
-    #credentials = urlencode({'grant_type': 'authorization_code',
-    #                         'code': request.session.get('access_token'),
-    #                         'client_id': fs.key
-    #                         })
-    #credentials = credentials.encode("utf-8")
-    #response = fs._request(url, credentials,
-    #                         {"Content-Type": "application/x-www-form-urlencoded",
-    #                         "Accept": "application/json"}, nojson=True)
     
+    try:
+        fs = fsClient(request)
+        person = fs.get(fs.current_user())['response']['users'][0]
+        ancestors = fs.get(fs.ancestry(person['personId']))['response']
+    except HTTPError:
+        # If token is expired, logged out user
+        return HttpResponseRedirect(reverse('accounts:logout'))
+    
+    pp = pprint.PrettyPrinter(indent=4)
+    print 'PERSON..'
+    pp.pprint(person)
+    print 'Ancestry..'
+    pp.pprint(ancestors)
+
     return render(request, 'family/family_tree.html', {
-        'data': 1
+        'ancestors': ancestors,
+        'given_name': person['givenName'],
     })

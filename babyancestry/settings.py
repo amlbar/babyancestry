@@ -133,17 +133,10 @@ INSTALLED_APPS = [
 
 LOGIN_URL = "/"
 
-# familysearch API settings
-# APP_KEY = "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK"
-# USER_AGENT = "20e0"
-# FS_ADDRESS = "https://sandbox.familysearch.org"
-# FS_REDIRECT_URI = "https://www.google.com.ph"
-
-# this is different dev account, it's temporary for now
-APP_KEY = "a0T3000000BZ6ojEAD"
-USER_AGENT = "tuf000205792"
-FS_ADDRESS = "https://sandbox.familysearch.org"
-FS_REDIRECT_URI = "http://localhost:8000/callback/"
+# familysearch API prod settings
+APP_KEY = " "
+USER_AGENT = " "
+FS_ADDRESS = "https://ident.familysearch.org"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
