@@ -22,15 +22,15 @@
             <div id="ribbon"></div>
             {% if request.session.logged_in %}
             <div id="leftheader">
-                <div id="greetings"><span>WELCOME</span> {{ given_name|upper }}</div>
+                <div id="greetings"><span>WELCOME</span> {{ person.givenName|upper }}</div>
                 <a href="{% url 'accounts:logout' %}">Logout</a>
             </div>
             <div id="rightheader">
                 <nav>
                     <ul>
-                        <li><a href="">Boy Names</a></li>
-                        <li><a href="">Girl Names</a></li>
-                        <li><a href="">Last Names</a></li>
+                        <li><a href="#" onclick="loadAncestry(1, 'male');loadAncestry(2, 'male')">Boy Names</a></li>
+                        <li><a href="#">Girl Names</a></li>
+                        <li><a href="#">Last Names</a></li>
                     </ul>
                 </nav>
             </div>

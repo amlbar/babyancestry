@@ -1,0 +1,17 @@
+{% load static %}
+{% load url from future %}
+<div class="head">
+    <div class="avatar"><img src="{% static 'images/avatar.png' %}" /></div>
+	<div class="person-info">
+		<p class="name">{{ person.display.name }}</p>
+		<p class="born">{{ person.display.birthDate }}</p>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<div class="bio">fd sf g f dgfgkldj fdkjf ds;lfjdfjeogirhdaif hdfd fdsfj dfl df jdjf dsfjei fsdj f gr  vft er htuny unyet yrt ar tvaecrcea frhbtshgfdasfca ece dfav sdf dsgb rat </div>
+<div class="readmore">
+    <a href="lds.org" target="_blank">Read more at LDS.org &gt;</a>
+</div>
+<div class="meaning">
+    <a href="behindthename.com" target="_blank">{{ person.display.name|truncatewords:1|cut:"..." }} meaning at BehindTheName.com &gt;</a>
+</div>

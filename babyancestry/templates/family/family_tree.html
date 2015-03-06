@@ -3,33 +3,48 @@
 {% load url from future %}
 
 {% block content %}
-    {{ ancestors }}
-    {% for obj in "1234567890" %}
-	<div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
-		<div class="box" data-toggle="modal" data-target="#modal-info">
-			<img src="{% static 'images/avatar.png' %}" class="avatar" />
-			<div class="overlay"><p>Nancy Sue Stratford</p></div>
-		</div>
-	</div>
-    {% endfor %}
+    <h3>Ancestor</h3>
+    <div id="ancestor_container"></div><br/><br/>
+    
+    <h3>Descendant</h3>
+    <div id="descendant_container"></div>
 
 	<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	<div class="modal-content">
-	<div class="modal-body">
-		<div class="head">
-			<div class="avatar"><img src="{% static 'images/avatar.png' %}" /></div>
-			<div class="person-info">
-				<p class="name">Nancy Sue Stratford</p>
-				<p class="born">June 26, 1929-</p>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="bio">fd sf g f dgfgkldj fdkjf ds;lfjdfjeogirhdaif hdfd fdsfj dfl df jdjf dsfjei fsdj f gr  vft er htuny unyet yrt ar tvaecrcea frhbtshgfdasfca ece dfav sdf dsgb rat </div>
-		<div class="readmore"><a href="lds.org">Read more at LDS.org &gt;</a></div>
-		<div class="meaning"><a href="behindthename.com">Nancy meaning at BehindTheName.com &gt;</a></div>
-	</div>
+	<div class="modal-body" id="person_container"></div>
 	</div>
 	</div>
 	</div>
 {% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function(){
+            loadAncestry(1, 'all');
+            loadAncestry(2, 'all');
+        });
+        
+        function getPersonInfo(person_id) {
+            $('#person_container').html(
+                '<img src="{% static 'images/standard/loading32.gif' %}"> Loading...');
+            $('#person_container').load('/family-tree/person/'+person_id);
+        }
+        
+        function loadAncestry(tree, gender){
+            var person_id = '{{ person.personId }}';
+            
+            $('#ancestor_container').html(
+                '<img src="{% static 'images/standard/loading32.gif' %}"> Loading data...');
+            
+            if (tree == 1){
+                url = '/family-tree/ancestor/'+person_id+'/?gender='+gender;
+                $('#ancestor_container').load(url);
+            }else if (tree == 2){
+                url = '/family-tree/descendant/'+person_id+'/?gender='+gender;
+                $('#descendant_container').load(url);
+            }
+        }
+    </script>
+{% endblock js %}

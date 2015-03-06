@@ -1,0 +1,27 @@
+{% load static %}
+{% for person in ancestry %}
+    {% if gender == 'male' or person.display.gender == 'Male' %}
+    <div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
+        <div onclick="getPersonInfo('{{ person.id }}')" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
+		    <img src="{% static 'images/avatar.png' %}" class="avatar" />
+		    <div class="overlay"><p>{{ person.display.name }}</p></div>
+	    </div>
+    </div>
+    {% elif gender == 'female' and person.display.gender == 'Female' %}
+    <div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
+        <div onclick="getPersonInfo('{{ person.id }}')" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
+		    <img src="{% static 'images/avatar.png' %}" class="avatar" />
+		    <div class="overlay"><p>{{ person.display.name }}</p></div>
+	    </div>
+    </div>
+    {% else %}
+    <div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
+        <div onclick="getPersonInfo('{{ person.id }}')" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
+		    <img src="{% static 'images/avatar.png' %}" class="avatar" />
+		    <div class="overlay"><p>{{ person.display.name }}</p></div>
+	    </div>
+    </div>
+    {% endif %}
+{% empty %}
+<div>No data found</div>
+{% endfor %}
