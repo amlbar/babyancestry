@@ -3,18 +3,16 @@
 {% load url from future %}
 
 {% block content %}
-    <h3>Ancestor</h3>
-    <div id="ancestor_container"></div><br/><br/>
-    
-    <h3>Descendant</h3>
-    <div id="descendant_container"></div>
+	<div class="row"><div id="ancestor_container"></div></div><br>
 
-	<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	<div class="modal-content">
-	<div class="modal-body" id="person_container"></div>
-	</div>
-	</div>
+	<div class="row">
+		<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" id="person_container"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock content %}
 
@@ -22,29 +20,24 @@
     {{ block.super }}
     <script>
         $(document).ready(function(){
-            loadAncestry(1, 'all');
-            loadAncestry(2, 'all');
+            loadAncestry('all','all');
         });
         
         function getPersonInfo(person_id) {
             $('#person_container').html(
                 '<img src="{% static 'images/standard/loading32.gif' %}"> Loading...');
+
             $('#person_container').load('/family-tree/person/'+person_id);
         }
         
-        function loadAncestry(tree, gender){
+        function loadAncestry(gender, names){
             var person_id = '{{ person.personId }}';
-            
+            var param = '/?gender='+gender+'&names='+names;
+
             $('#ancestor_container').html(
                 '<img src="{% static 'images/standard/loading32.gif' %}"> Loading data...');
-            
-            if (tree == 1){
-                url = '/family-tree/ancestor/'+person_id+'/?gender='+gender;
-                $('#ancestor_container').load(url);
-            }else if (tree == 2){
-                url = '/family-tree/descendant/'+person_id+'/?gender='+gender;
-                $('#descendant_container').load(url);
-            }
+            // console.log('/family-tree/ancestor/'+person_id+param);
+            $('#ancestor_container').load('/family-tree/ancestor/'+person_id+param);
         }
     </script>
 {% endblock js %}

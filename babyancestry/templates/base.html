@@ -22,15 +22,17 @@
             <div id="ribbon"></div>
             {% if request.session.logged_in %}
             <div id="leftheader">
-                <div id="greetings"><span>WELCOME</span> {{ person.givenName|upper }}</div>
-                <a href="{% url 'accounts:logout' %}">Logout</a>
+                <div id="greetings">
+					<span>WELCOME</span> {{ person.givenName|upper }}
+					<a href="{% url 'accounts:logout' %}" id="a-logout">Logout</a>
+				</div>
             </div>
             <div id="rightheader">
                 <nav>
                     <ul>
-                        <li><a href="#" onclick="loadAncestry(1, 'male');loadAncestry(2, 'male')">Boy Names</a></li>
-                        <li><a href="#">Girl Names</a></li>
-                        <li><a href="#">Last Names</a></li>
+                        <li><a href="#" onclick="loadAncestry('male','all')">Boy Names</a></li>
+                        <li><a href="#" onclick="loadAncestry('female','all')">Girl Names</a></li>
+                        <li><a href="#" onclick="loadAncestry('all','last')">Last Names</a></li>
                     </ul>
                 </nav>
             </div>
@@ -39,9 +41,9 @@
     </section>
     
     <section id="mainsection">
-        <div class="row">
+        <!-- <div class="row"> -->
             {% block content %}{% endblock content %}
-        </div>
+        <!-- </div> -->
     </section>
     
     <section id="footersection">

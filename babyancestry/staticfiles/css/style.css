@@ -109,7 +109,7 @@ a {
 	display: inline-block;
 }
 
-#rightheader nav li a {
+#rightheader nav li a, #a-logout {
 	padding: 5px;
 	border: 2px solid #808080;
 	border-radius: 10px;
@@ -119,15 +119,23 @@ a {
 	text-transform: uppercase;
 }
 
+#a-logout {
+	margin-left: 10px;
+}
+
 #leftheader, #rightheader {
 	margin-top: -3px;
 }
+#leftheader {
+	margin-top: -8px;
+}
+
 
 #rightheader nav li.active a {
 	background-color: #FFFFA5;
 }
 
-#rightheader nav li a:hover {
+#rightheader nav li a:hover, #a-logout:hover {
 	background-color: #FFFFA5;
 	color: #000;
 }
@@ -254,6 +262,9 @@ a {
 @media screen and (min-width:1100px) {
 	#leftheader, #rightheader {
 		margin-top: -20px;
+	}
+	#leftheader {
+		margin-top: -25px;
 	}
 	#ribbon {
 		margin-top: 105px;

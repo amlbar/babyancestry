@@ -30,24 +30,13 @@ def get_ancestor(request, person_id):
     fs = fsClient(request)
     ancestors = fs.get(fs.ancestry(person_id))['response']
     return render(request, 'family/ancestry.html', {
-        'ancestry': ancestors['persons'],
-        'gender': request.GET.get('gender')
-    })
-    
-    
-def get_descendant(request, person_id):
-    fs = fsClient(request)
-    descendant = fs.get(fs.descendancy(person_id))['response']
-    return render(request, 'family/ancestry.html', {
-        'ancestry': descendant['persons'],
-        'gender': request.GET.get('gender')
+        'ancestry': ancestors['persons']
     })
     
     
 def get_person_data(request, person_id):
     fs = fsClient(request)
     person = fs.get(fs.person(person_id))['response']['persons'][0]
-    #portrait = fs.get('https://sandbox.familysearch.org/platform/tree/persons/KW46-1D7/portrait')
     return render(request, 'family/person_info.html', {
         'person': person
     })
