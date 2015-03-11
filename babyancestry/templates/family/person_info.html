@@ -1,7 +1,11 @@
 {% load static %}
 {% load url from future %}
 <div class="head">
+	{% if thumbnail %}
+    <div class="avatar"><img src="{{ thumbnail }}" /></div>
+	{% else %}
     <div class="avatar"><img src="{% static 'images/avatar.png' %}" /></div>
+	{% endif %}
 	<div class="person-info">
 		<p class="name">{{ person.display.name }}</p>
 		<p class="born">{{ person.display.birthDate }}</p>

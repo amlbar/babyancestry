@@ -37,6 +37,16 @@ def get_ancestor(request, person_id):
 def get_person_data(request, person_id):
     fs = fsClient(request)
     person = fs.get(fs.person(person_id))['response']['persons'][0]
+    memories = fs.get(fs.person_memories(person_id))['response']
+    
+    if memories:
+        memories_links = memories['sourceDescriptions'][0]['links']
+        thumbnail = memories_links['image-thumbnail']['href']
+    else:
+        memories_links = thumbnail = None
+
     return render(request, 'family/person_info.html', {
-        'person': person
+        'person': person,
+        'image_links': memories_links,
+        'thumbnail': thumbnail
     })
