@@ -45,8 +45,17 @@ def get_person_data(request, person_id):
     else:
         memories_links = thumbnail = None
 
+    # if person['facts'] and person['facts'][1]:
+    try:
+        life_sketch = person['facts'][1]['value']
+        # else:
+    except IndexError:
+        life_sketch = '';
+
     return render(request, 'family/person_info.html', {
         'person': person,
         'image_links': memories_links,
-        'thumbnail': thumbnail
+        'thumbnail': thumbnail,
+        'memories': memories,
+        'life_sketch': life_sketch
     })

@@ -4,7 +4,7 @@
 	{% if thumbnail %}
     <div class="avatar"><img src="{{ thumbnail }}" /></div>
 	{% else %}
-    <div class="avatar"><img src="{% static 'images/avatar.png' %}" /></div>
+    <div class="avatar"><img src="{% static 'images/avatar_blank.png' %}" /></div>
 	{% endif %}
 	<div class="person-info">
 		<p class="name">{{ person.display.name }}</p>
@@ -12,7 +12,7 @@
 	</div>
 	<div class="clearfix"></div>
 </div>
-<div class="bio">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,</div>
+<div class="bio">{% if life_sketch %}{{ life_sketch }} {% else %} No content in Life Sketch. {% endif %}</div>
 <div class="readmore">
     <!-- <a href="http://lds.org" target="_blank">Read more at LDS.org &gt;</a> -->
     <a href='https://www.lds.org/search?lang=eng&query={{ person.display.name|truncatewords:1|cut:"..." }}' target="_blank">Read more at LDS.org &gt;</a>
