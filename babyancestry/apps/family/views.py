@@ -25,30 +25,44 @@ def family_tree(request):
         'person': person
     })
     
-
 def get_ancestor(request, person_id):
     fs = fsClient(request)
+
+    gender = ''
+    if 'gender' in request.GET:
+        gender = request.GET.get('gender')
+
     ancestors = fs.get(fs.ancestry(person_id))['response']
+
+    persons = [];
+    for i, val in enumerate(ancestors['persons']):
+        person = ancestors['persons'][i]
+        person_gender = (person['display']['gender']).lower()
+        get_thumbnail = False
+        if gender == person_gender or gender in ['all', '']:
+            person_memories = fs.get(fs.person_memories(person['id']))['response']
+            thumbnail = None
+            if person_memories:
+                thumbnail = person_memories['sourceDescriptions'][0]['links']['image-thumbnail']['href']
+            person['thumbnail'] = thumbnail
+            persons.append(person)
+
     return render(request, 'family/ancestry.html', {
-        'ancestry': ancestors['persons']
+        'ancestry': persons
     })
-    
     
 def get_person_data(request, person_id):
     fs = fsClient(request)
     person = fs.get(fs.person(person_id))['response']['persons'][0]
     memories = fs.get(fs.person_memories(person_id))['response']
     
+    memories_links = thumbnail = None
     if memories:
         memories_links = memories['sourceDescriptions'][0]['links']
         thumbnail = memories_links['image-thumbnail']['href']
-    else:
-        memories_links = thumbnail = None
 
-    # if person['facts'] and person['facts'][1]:
     try:
         life_sketch = person['facts'][1]['value']
-        # else:
     except IndexError:
         life_sketch = '';
 

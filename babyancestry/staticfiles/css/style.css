@@ -26,7 +26,9 @@ body {
 a {
 	color: #000;
 }
-
+ul, ol {
+	padding: 0;
+}
 
 /********************************************************/
 /*                2. Main layout elements               */
@@ -145,6 +147,11 @@ a {
 /*                         3. Modal                     */
 /********************************************************/
 
+.box-cont {
+	width: 152px;
+	margin: auto;
+	height: 152px;
+}
 .box {
 	/* background-color: orange; */
 	border-radius: 6px;
@@ -152,6 +159,7 @@ a {
 	margin: 10px 0px;
 	position: relative;
 	overflow: hidden;
+	height: 100%;
 }
 
 .box img.avatar {
