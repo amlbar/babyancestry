@@ -27,15 +27,17 @@
 					<a href="{% url 'accounts:logout' %}" id="a-logout">Logout</a>
 				</div>
             </div>
+            {% block content_filter %}
             <div id="rightheader">
                 <nav>
                     <ul>
                         <li><a href="#" onclick="loadAncestry('male','all')">Boy Names</a></li>
                         <li><a href="#" onclick="loadAncestry('female','all')">Girl Names</a></li>
-                        <li><a href="#" onclick="loadAncestry('all','last')">Last Names</a></li>
+                        <li><a href="#" onclick="loadAncestry('all','all')">All Names</a></li>
                     </ul>
                 </nav>
             </div>
+            {% endblock content_filter %}
             {% endif %}
         </div>
     </section>
@@ -55,6 +57,16 @@
     {% block js %}
         <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script>
+        function centerModal(modal) {
+            $(modal).css('display', 'block');
+            var $dialog = $(modal).find(".modal-dialog");
+            var offset = ($(window).height() - $dialog.height()) / 2;
+            if(offset<10) offset=10;
+            $dialog.css("margin-top", offset);
+        }
+        </script>
     {% endblock js %}
+
 </body>
 </html>

@@ -5,6 +5,8 @@
 {% block content %}
 	<div class="row"><div id="ancestor_container"></div></div><br>
 
+    <div class="row"><div class="center feedback"><a href="/family-tree/comments/" id="leave-comments">Leave Feedback</a></div></div>
+
 	<div class="row">
 		<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -26,8 +28,11 @@
         function getPersonInfo(person_id) {
             $('#person_container').html(
                 '<img src="{% static 'images/standard/loading32.gif' %}"> Loading...');
-
-            $('#person_container').load('/family-tree/person/'+person_id);
+            
+            centerModal('#modal-info');
+            $('#person_container').load('/family-tree/person/'+person_id, function(){
+            	centerModal('#modal-info');
+            });
         }
         
         function loadAncestry(gender, names){
@@ -39,5 +44,19 @@
             // console.log('/family-tree/ancestor/'+person_id+param);
             $('#ancestor_container').load('/family-tree/ancestor/'+person_id+param);
         }
+
+		
+		//expand the story
+		//$('.story .summary span').on('click', function(){
+		$('#person_container').on('click', '.summary span', function(){
+			var story = $(this).parents('.story');
+			$(story).find('.summary').hide();
+			$(story).find('.full').show();
+		});		
+		$('#person_container').on('click', '.full span', function(){
+			var story = $(this).parents('.story');
+			$(story).find('.full').hide();
+			$(story).find('.summary').show();
+		});		
     </script>
 {% endblock js %}

@@ -8,13 +8,14 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'babynames_db',
+        'USER': 'babynames_db',
+        'PASSWORD': 'dbzzapbbn',
     }
 }
 
@@ -176,6 +177,19 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+# familysearch API dev settings
+# APP_KEY = "a0T3000000BZ6ojEAD"
+# USER_AGENT = "tuf000205792"
+# FS_ADDRESS = "https://sandbox.familysearch.org"
+
+
+# familysearch API production settings
+APP_KEY = "Q5YX-KQ5L-TJ3S-VXXJ-5XMV-KNDZ-LYD2-2B6Q" #production key
+USER_AGENT = "tuf000205792" #not sure
+FS_ADDRESS = "https://familysearch.org" 
+
+COMPRESS_ENABLED = False
 
 ##################
 # LOCAL SETTINGS #

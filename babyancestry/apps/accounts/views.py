@@ -73,13 +73,18 @@ def fs_callback(request):
         
         # save the user token
         ip = get_client_ip(request)
-        IPToken.objects.create(ip=ip, access_token=access_token)
+        try:
+            IPToken.objects.get(ip=ip)
+        except IPToken.DoesNotExist:
+            IPToken.objects.create(ip=ip, access_token=access_token)
         
         # If the user is successfully logged in, set this to True
         request.session['logged_in'] = True
-        
+
+        # print("success logged in")
         return HttpResponseRedirect(reverse('family:family_tree'))
     except:
+        # print("not logged in")
         # If the user is not successfully logged in, set this to False
         request.session['logged_in'] = False
         return HttpResponseRedirect(request.GET.get('redirect', '/'))

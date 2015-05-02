@@ -5,20 +5,11 @@
         <div onclick="getPersonInfo('{{ person.id }}')" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
 		    <img src="{% if person.thumbnail %}{{ person.thumbnail }}{% else %}{% static 'images/avatar_blank.png' %}{% endif %}" class="avatar" />
 		    <div class="overlay">
-		        {% if request.GET.names == 'all' %}
 		        <p>{{ person.display.name }}</p>
-		        {% elif request.GET.names == 'last' %}
-		        <p>
-		        {% for last_name in person.names.0.nameForms.0.parts %}
-		            {% if forloop.last %}
-		            {{ last_name.value }}
-		            {% endif %}
-		        {% endfor %}
-		        </p>
-		        {% endif %}
 		    </div>
 	    </div>
 	    </div>
+	    <div style="display:none;">{{ person.stories }}</div>
     </div>
 {% empty %}
 <div>No data found</div>

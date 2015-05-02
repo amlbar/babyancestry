@@ -1,12 +1,14 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from django.conf import settings
 
 from urllib import urlencode
 from urllib2 import HTTPError
 from urlparse import parse_qs
 
 from accounts.views import fsClient
+import json
 
 
 def family_tree(request):
@@ -24,27 +26,31 @@ def family_tree(request):
     return render(request, 'family/family_tree.html', {
         'person': person
     })
-    
+
 def get_ancestor(request, person_id):
     fs = fsClient(request)
 
-    gender = ''
-    if 'gender' in request.GET:
-        gender = request.GET.get('gender')
+    gender = request.GET.get('gender', '')
 
     ancestors = fs.get(fs.ancestry(person_id))['response']
 
-    persons = [];
+    persons = []
     for i, val in enumerate(ancestors['persons']):
         person = ancestors['persons'][i]
         person_gender = (person['display']['gender']).lower()
-        get_thumbnail = False
+
         if gender == person_gender or gender in ['all', '']:
             person_memories = fs.get(fs.person_memories(person['id']))['response']
-            thumbnail = None
             if person_memories:
-                thumbnail = person_memories['sourceDescriptions'][0]['links']['image-thumbnail']['href']
-            person['thumbnail'] = thumbnail
+                person['stories'] = []
+                has_image = False
+                for src_desc in person_memories['sourceDescriptions']:
+                    if src_desc['mediaType'] == 'text/plain':
+                        person['stories'].append(src_desc)
+                    elif src_desc['mediaType'] in ['image/jpeg','image/png'] and not has_image:
+                        person['thumbnail'] = src_desc['links']['image-thumbnail']['href']
+                        has_image = True
+
             persons.append(person)
 
     return render(request, 'family/ancestry.html', {
@@ -55,21 +61,36 @@ def get_person_data(request, person_id):
     fs = fsClient(request)
     person = fs.get(fs.person(person_id))['response']['persons'][0]
     memories = fs.get(fs.person_memories(person_id))['response']
-    
-    memories_links = thumbnail = None
     if memories:
-        memories_links = memories['sourceDescriptions'][0]['links']
-        thumbnail = memories_links['image-thumbnail']['href']
-
+        person['stories'] = []
+        has_image = False
+        for src_desc in memories['sourceDescriptions']:
+            if src_desc['mediaType'] == 'text/plain':
+                person['stories'].append(src_desc)
+            elif src_desc['mediaType'] in ['image/jpeg','image/png'] and not has_image:
+                person['thumbnail'] = src_desc['links']['image-thumbnail']['href']
+                has_image = True
+    
     try:
         life_sketch = person['facts'][1]['value']
-    except IndexError:
-        life_sketch = '';
+    except(IndexError, KeyError):
+        life_sketch = ''
+
+    format = request.GET.get('format', '').lower()
+    if format and format == 'json':
+        result = json.dumps(person,indent=4)
+        result2 = json.dumps(memories,indent=4)
+        return HttpResponse(result2,content_type="json")
 
     return render(request, 'family/person_info.html', {
         'person': person,
-        'image_links': memories_links,
-        'thumbnail': thumbnail,
-        'memories': memories,
-        'life_sketch': life_sketch
+        'life_sketch': life_sketch,
+        'fs_address': settings.FS_ADDRESS
     })
+
+def leave_comments(request):
+    if not request.session.get('logged_in'):
+        return HttpResponseRedirect(reverse('accounts:login'))
+        
+    return render(request, 'family/comments.html')
+
