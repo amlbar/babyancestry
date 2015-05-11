@@ -1,40 +1,40 @@
 {% load static %}
 {% load url from future %}
 <div class="head">
-	{% if person.thumbnail %}
+    {% if person.thumbnail %}
     <div class="avatar"><img src="{{ person.thumbnail }}" /></div>
-	{% else %}
-    <div class="avatar"><img src="{% static 'images/avatar_blank.png' %}" /></div>
-	{% endif %}
-	<div class="person-info">
-		<p class="name">{{ person.display.name }}</p>
-		<p class="born">{{ person.display.birthDate }}</p>
-	</div>
-	<div class="clearfix"></div>
+    {% else %}
+    <div class="avatar default"><img src="{% static 'images/avatar_blank.png' %}" /></div>
+    {% endif %}
+    <div class="person-info">
+        <p class="name">{{ person.display.name }}</p>
+        <p class="born">{{ person.display.birthDate }}</p>
+    </div>
+    <div class="clearfix"></div>
 </div>
 <div class="bio">
-	{% if life_sketch %}
-	<div class="story well">
-		{% if life_sketch|length >= 50 %}
-		<p class="summary">{{ life_sketch|truncatechars:53|cut:"..." }}<span>&nbsp</span></p>
-		<p class="full" style="display:none">{{ life_sketch }}<span>&nbsp</span></p>
-		{% else %}
-		<p class="full" style="display:none">{{ life_sketch }}</p>
-		{% endif %}
-	</div>
-	{% endif %}
-	
-	{% for story in person.stories %}
-	<div class="story well">
-	<h4>{{ story.titles.0.value }}</h4>
-	{% if story.descriptions.0.value|length >= 50 %}
-		<p class="summary">{{ story.descriptions.0.value|truncatechars:53|cut:"..." }}<span>&nbsp</span></p>
-		<p class="full" style="display:none">{{ story.descriptions.0.value }}<span>&nbsp</span></p>
-	{% else %}
-		<p class="full">{{ story.descriptions.0.value }}</p>
-	{% endif %}
-	</div>
-	{% endfor %}
+    {% if life_sketch %}
+    <div class="story well life-sketch">
+        {% if life_sketch|length >= 50 %}
+        <p class="summary">{{ life_sketch|truncatechars:53|cut:"..." }}<span>&nbsp</span></p>
+        <p class="full" style="display:none">{{ life_sketch }}<span>&nbsp</span></p>
+        {% else %}
+        <p class="full" style="display:none">{{ life_sketch }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {% for story in person.stories %}
+    <div class="story well">
+    <h4>{{ story.titles.0.value }}</h4>
+    {% if story.descriptions.0.value|length >= 50 %}
+        <p class="summary">{{ story.descriptions.0.value|truncatechars:53|cut:"..." }}<span>&nbsp</span></p>
+        <p class="full" style="display:none">{{ story.descriptions.0.value }}<span>&nbsp</span></p>
+    {% else %}
+        <p class="full">{{ story.descriptions.0.value }}</p>
+    {% endif %}
+    </div>
+    {% endfor %}
 </div>
 <div class="readmore">
     <!-- <a href="http://lds.org" target="_blank">Read more at LDS.org &gt;</a> -->

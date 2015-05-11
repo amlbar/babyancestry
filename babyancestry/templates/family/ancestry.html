@@ -1,15 +1,14 @@
 {% load static %}
 {% for person in ancestry %}
     <div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
-		<div class="box-cont">
-        <div onclick="getPersonInfo('{{ person.id }}')" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
-		    <img src="{% if person.thumbnail %}{{ person.thumbnail }}{% else %}{% static 'images/avatar_blank.png' %}{% endif %}" class="avatar" />
-		    <div class="overlay">
-		        <p>{{ person.display.name }}</p>
-		    </div>
-	    </div>
-	    </div>
-	    <div style="display:none;">{{ person.stories }}</div>
+        <div class="box-cont">
+            <div sonclick="getPersonInfo('{{ person.id }}')" data-person-id="{{ person.id }}" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
+                <img src="{% if person.thumbnail %}{{ person.thumbnail }}{% else %}{% static 'images/avatar_blank.png' %}{% endif %}" class="avatar" />
+                <div class="overlay">
+                    <p>{{ person.display.name }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% empty %}
 <div>No data found</div>

@@ -39,13 +39,60 @@ ul, ol {
 }
 
 #headersection > .row, #mainsection > .row, #footersection > .row {
-	margin-left: 0px; margin-right: 0px;
+	/* margin-left: 0px; margin-right: 0px; */
 }
 
 #headersection {
-	background: url(../images/browsers/header.png) repeat-x center;
-	min-height: 264px;
+	background: url(../images/browsers/header.png) repeat-x center top;
 	position: relative;
+}
+#ribbon {
+	text-align: center;
+}
+#leftheader {
+	padding-bottom: 10px;
+}
+@media screen and (max-width:590px) {
+#headersection {
+	background-size: 230%;
+}
+#ribbon img{
+	margin-top: 16.5%;
+	width: 80%;
+}
+.home #ribbon img{
+	margin-bottom: 15%;
+}
+#leftheader {
+	/* padding-bottom: 15px; */
+}
+}
+@media screen and (min-width:591px) {
+#headersection {
+	min-height: 264px;
+}
+#ribbon img{
+	margin-top: 96px;
+	width: 412px;
+}
+#leftheader {
+	margin-top: 0;
+}
+#rightheader {
+	margin-top: -2px;
+}
+}
+
+@media screen and (min-width:1025px) {
+#ribbon img{
+	width: 445px;
+}
+#leftheader {
+	margin-top: -8px;
+}
+#rightheader {
+	margin-top: -10px;
+}
 }
 
 #leftheader {
@@ -66,7 +113,8 @@ ul, ol {
 }
 
 #mainsection {
-	min-height: 100px;
+	/* min-height: 100px; */
+	min-height: 280px;
 }
 
 #footersection {
@@ -76,10 +124,10 @@ ul, ol {
 #footersection > .row {
 	background: #fff url(../images/browsers/footer.png) repeat-x center;
 	height: 154px;
-	position: fixed;
+	/* position: fixed;
 	bottom: 0;
 	right: 0;
-	left: 0;
+	left: 0; */
 	-webkit-box-shadow: 0px -2px 7px -3px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px -2px 7px -3px rgba(0,0,0,0.75);
 	box-shadow: 0px -2px 7px -3px rgba(0,0,0,0.75);
@@ -89,14 +137,6 @@ ul, ol {
 	min-width: 10px;
 	min-height: 10px;
 	margin: 0 auto;
-}
-
-#ribbon {
-	background: url(../images/browsers/ribbon.png) no-repeat center;
-	width: 445px;
-	height: 115px;
-	margin-top: 96px;
-	background-size: 414px 102px;
 }
 
 #elephant {
@@ -109,6 +149,7 @@ ul, ol {
 #rightheader nav li {
 	list-style: none;
 	display: inline-block;
+	padding: 7px 0;
 }
 
 #rightheader nav li a, #a-logout, #leave-comments {
@@ -123,13 +164,6 @@ ul, ol {
 
 #a-logout {
 	margin-left: 10px;
-}
-
-#leftheader, #rightheader {
-	margin-top: -3px;
-}
-#leftheader {
-	margin-top: -8px;
 }
 
 
@@ -288,10 +322,10 @@ ul, ol {
 		margin-top: -20px;
 	}
 	#leftheader {
-		margin-top: -25px;
+		margin-top: -18px;
 	}
 	#ribbon {
-		margin-top: 105px;
+		/* margin-top: 105px; */
 		background-size: 100% 100%;
 	}
 }
@@ -315,5 +349,71 @@ ul, ol {
 	#modal-info .modal-dialog {
 		width: auto!important;
 		margin: 5%;
+	}
+}
+@media (max-width: 280px){
+#elephant {
+  background-size: 100%;
+  width: 60px;
+  height: 40px;
+  margin-top: -10px;
+}
+#footersection > .row {
+  height: 74px;
+  background-size: 230%;
+}
+}
+@media (min-width: 281px) and (max-width: 330px){
+#elephant {
+  background-size: 100%;
+  width: 74px;
+  height: 48px;
+  margin-top: -10px;
+}
+#footersection > .row {
+  height: 87px;
+  background-size: 230%;
+}
+}
+@media (min-width: 331px) and (max-width: 420px){
+#elephant {
+  background-size: 100%;
+  width: 100px;
+  height: 63px;
+  margin-top: -10px;
+}
+#footersection > .row {
+  height: 110px;
+  background-size: 230%;
+}
+}
+@media (min-width: 421px) and (max-width: 480px){
+#elephant {
+  background-size: 100%;
+  width: 110px;
+  height: 70px;
+  margin-top: -10px;
+}
+#footersection > .row {
+  height: 120px;
+  background-size: 230%;
+}
+}
+@media (min-width: 481px) and (max-width: 568px){
+#footersection > .row {
+  height: 148px;
+  background-size: 230%;
+}
+#elephant {
+  background-size: 100%;
+  width: 122px;
+  height: 76px;
+  margin-top: -15px;
+}
+}
+@media screen and (max-width: 480px){
+	#leftheader, #rightheader {
+		width: 100%;
+		text-align: center;
 	}
 }

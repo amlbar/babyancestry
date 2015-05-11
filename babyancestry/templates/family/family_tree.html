@@ -2,20 +2,22 @@
 {% load static %}
 {% load url from future %}
 
+{% block body_class %}family-tree{% endblock body_class %}
+
 {% block content %}
-	<div class="row"><div id="ancestor_container"></div></div><br>
+    <div class="row"><div id="ancestor_container"></div></div><br>
 
     <div class="row"><div class="center feedback"><a href="/family-tree/comments/" id="leave-comments">Leave Feedback</a></div></div>
 
-	<div class="row">
-		<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body" id="person_container"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="person_container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 {% block js %}
@@ -23,6 +25,23 @@
     <script>
         $(document).ready(function(){
             loadAncestry('all','all');
+            //box on click
+            $('#ancestor_container').on('click', '.box', function(){
+                $(this).addClass('active');
+            });
+            $('#modal-info').on('hide.bs.modal', function(e){
+                $('.box').removeClass('active');
+            });
+            $('#modal-info').on('show.bs.modal', function(e){
+                var person_id = $('.box.active').attr('data-person-id');
+                if($('#pinfo-'+ person_id).html()){
+                    $('#person_container').html($('#pinfo-'+ person_id).html());
+                    $('#modal-info').css('display', 'block');
+                    centerModal('#modal-info');
+                } else {
+                    getPersonInfo(person_id);
+                }
+            });
         });
         
         function getPersonInfo(person_id) {
@@ -31,7 +50,16 @@
             
             centerModal('#modal-info');
             $('#person_container').load('/family-tree/person/'+person_id, function(){
-            	centerModal('#modal-info');
+                centerModal('#modal-info');
+                var id = 'pinfo-'+person_id;
+                //if element exists
+                if($('#'+ id).length){
+                    $('#'+ id).html($('#person_container').html());
+                } else {
+                    var person_info = '<div id="'+ id +'">'+ $('#person_container').html() +'</div>';
+                    $('#stored-info').append(person_info);
+                }
+                $('.box.active img').attr('src', $('#person_container .avatar img').attr('src'));
             });
         }
         
@@ -45,18 +73,18 @@
             $('#ancestor_container').load('/family-tree/ancestor/'+person_id+param);
         }
 
-		
-		//expand the story
-		//$('.story .summary span').on('click', function(){
-		$('#person_container').on('click', '.summary span', function(){
-			var story = $(this).parents('.story');
-			$(story).find('.summary').hide();
-			$(story).find('.full').show();
-		});		
-		$('#person_container').on('click', '.full span', function(){
-			var story = $(this).parents('.story');
-			$(story).find('.full').hide();
-			$(story).find('.summary').show();
-		});		
+        
+        //expand the story
+        //$('.story .summary span').on('click', function(){
+        $('#person_container').on('click', '.summary span', function(){
+            var story = $(this).parents('.story');
+            $(story).find('.summary').hide();
+            $(story).find('.full').show();
+        });
+        $('#person_container').on('click', '.full span', function(){
+            var story = $(this).parents('.story');
+            $(story).find('.full').hide();
+            $(story).find('.summary').show();
+        });
     </script>
 {% endblock js %}

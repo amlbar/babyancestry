@@ -16,16 +16,18 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock stylesheets %}
 </head>
-<body>
+<body class="{% block body_class %}home{% endblock body_class %}">
     <section id="headersection">
         <div class="row">
-            <div id="ribbon"></div>
+            <div id="ribbon"><img src="{% static 'images/browsers/ribbon.png' %}"></div>
             {% if request.session.logged_in %}
+            <div id="control-sec">
             <div id="leftheader">
                 <div id="greetings">
-					<span>WELCOME</span> {{ person.givenName|upper }}
-					<a href="{% url 'accounts:logout' %}" id="a-logout">Logout</a>
-				</div>
+                    <span>WELCOME</span> {{ person.givenName|upper }}
+                    <a href="{% url 'accounts:logout' %}" id="a-logout">Logout</a>
+                </div>
+            </div>
             </div>
             {% block content_filter %}
             <div id="rightheader">
@@ -53,13 +55,16 @@
             <div id="elephant"></div>
         </div>
     </section>
+
+    <div style="display:none" id="stored-info"></div>
     
     {% block js %}
         <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script>
         function centerModal(modal) {
-            $(modal).css('display', 'block');
+            //$(modal).css('display', 'block');
+            console.log($(modal).is(":visible"));
             var $dialog = $(modal).find(".modal-dialog");
             var offset = ($(window).height() - $dialog.height()) / 2;
             if(offset<10) offset=10;
@@ -67,6 +72,5 @@
         }
         </script>
     {% endblock js %}
-
 </body>
 </html>
