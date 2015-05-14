@@ -1,11 +1,15 @@
 {% load static %}
 {% load url from future %}
 <div class="head">
+    <div class="avatar {{ person.display.gender }}">
     {% if person.thumbnail %}
-    <div class="avatar"><img src="{{ person.thumbnail }}" /></div>
+        <img src="{{ person.thumbnail }}" class="thumbnail"/>
     {% else %}
-    <div class="avatar default"><img src="{% static 'images/avatar_blank.png' %}" /></div>
+        {% with 'images/browsers/'|add:person.display.gender|add:'-avatar.png' as image_avatar %}
+        <img src="{% static image_avatar %}" class="default"/>
+        {% endwith %}
     {% endif %}
+    </div>
     <div class="person-info">
         <p class="name">{{ person.display.name }}</p>
         <p class="born">{{ person.display.birthDate }}</p>

@@ -186,12 +186,12 @@ ul, ol {
 .box-cont {
 	width: 152px;
 	margin: auto;
-	height: 152px;
+	/* height: 152px; */
+	height: 186px;
 }
 .box {
 	/* background-color: orange; */
-	border-radius: 6px;
-	border: 1px solid #aaa;
+	border: 1px solid transparent;
 	margin: 10px 0px;
 	position: relative;
 	overflow: hidden;
@@ -212,12 +212,24 @@ ul, ol {
 	line-height: 20px;
 	font-size: 20px;
 	vertical-align: middle;
-	padding-top: 35%;
-	background-color: #fff;
+	/* padding-top: 35%; */
+	background-color: transparent;
+	border: 1px solid transparent;
+}
+.box .overlay:hover {
+	background-color: rgba(255,255,255,0.25);
+	border-color: #999;
+	border-radius: 4px;
 }
 
-.box .overlay:hover {
-	background-color: rgba(255,255,255,0.5);
+.box .overlay > p {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(255,255,255,0.8);
+	margin-bottom: 0px;
+	border-radius: 4px;
 }
 
 .modal-backdrop.fade {
@@ -276,7 +288,7 @@ ul, ol {
 
 #loginbutton {
 	text-align: center;
-	padding: 20px;
+	padding: 0px;
 }
 
 #go-login {
@@ -416,4 +428,15 @@ ul, ol {
 		width: 100%;
 		text-align: center;
 	}
+}
+#modal-login .modal-content {
+	min-width: 320px;
+}
+#login_container {
+	text-align: center;
+	background: url(../images/browsers/login-border.png) center no-repeat;
+}
+#welcome-text {
+	padding-top: 122px;
+	min-height: 410px;
 }

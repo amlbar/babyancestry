@@ -59,7 +59,7 @@
                     var person_info = '<div id="'+ id +'">'+ $('#person_container').html() +'</div>';
                     $('#stored-info').append(person_info);
                 }
-                $('.box.active img').attr('src', $('#person_container .avatar img').attr('src'));
+                $('#box-person-'+person_id+' img').attr('src', $('#person_container .avatar img').attr('src'));
             });
         }
         

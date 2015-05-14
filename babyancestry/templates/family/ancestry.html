@@ -2,8 +2,10 @@
 {% for person in ancestry %}
     <div class="col-md-2 col-sm-3 col-xs-6 {% if forloop.first or forloop.counter0|divisibleby:5 %}col-md-offset-1{% endif %}">
         <div class="box-cont">
-            <div sonclick="getPersonInfo('{{ person.id }}')" data-person-id="{{ person.id }}" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
-                <img src="{% if person.thumbnail %}{{ person.thumbnail }}{% else %}{% static 'images/avatar_blank.png' %}{% endif %}" class="avatar" />
+            <div id="box-person-{{ person.id }}" data-person-id="{{ person.id }}" class="box" data-toggle="modal" data-target="#modal-info" style="cursor:pointer">
+                {% with 'images/browsers/'|add:person.display.gender|add:'-avatar.png' as image_avatar %}
+                <img src="{% if person.thumbnail %}{{ person.thumbnail }}{% else %}{% static image_avatar %}{% endif %}" class="avatar {{ person.display.gender }}" />
+                {% endwith %}
                 <div class="overlay">
                     <p>{{ person.display.name }}</p>
                 </div>
