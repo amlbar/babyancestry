@@ -196,6 +196,7 @@ ul, ol {
 	position: relative;
 	overflow: hidden;
 	height: 100%;
+	border-radius: 4px;
 }
 
 .box img.avatar {
@@ -229,7 +230,8 @@ ul, ol {
 	bottom: 0;
 	background-color: rgba(255,255,255,0.8);
 	margin-bottom: 0px;
-	border-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
 
 .modal-backdrop.fade {
